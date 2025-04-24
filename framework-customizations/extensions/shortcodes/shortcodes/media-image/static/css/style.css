@@ -1,0 +1,10 @@
+.image-shortcode {
+	position: relative;
+}
+.image-shortcode a {
+	display: block;
+}
+.image-shortcode img {
+	width: 100%;
+	height: auto;
+}

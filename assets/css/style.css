@@ -1,0 +1,335 @@
+body {
+	font-family: "Times News Roman";
+}
+
+a {
+	text-decoration: none;
+	color: #bc7026;
+}
+a:focus {
+	outline: none;
+	text-decoration: underline;
+	color: #000;
+}
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object,
+video {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Media captions */
+figcaption,
+.wp-caption,
+.wp-caption-text,
+.wp-block-embed figcaption {
+	color: currentColor;
+	text-align: center;
+}
+
+.alignleft figcaption,
+.alignright figcaption,
+.alignleft .wp-caption,
+.alignright .wp-caption,
+.alignleft .wp-caption-text,
+.alignright .wp-caption-text,
+.alignleft .wp-block-embed figcaption,
+.alignright .wp-block-embed figcaption {
+	margin-bottom: 0;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+img.alignleft {
+	float: left;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+}
+img.alignright {
+	float: right;
+	margin-left: 1rem;
+	margin-bottom: 1rem;
+}
+img.aligncenter {
+	display: block;
+	margin: 0 auto;
+}
+
+/**
+ * ==============================================
+ * Dot Flashing
+ * ==============================================
+ */
+.dot-flashing {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: .5s;
+}
+
+.dot-flashing::before, .dot-flashing::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-flashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dotFlashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dotFlashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dotFlashing {
+  0% {
+    background-color: #9880ff;
+  }
+  50%,
+  100% {
+    background-color: #ebe6ff;
+  }
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+.fw-text-block-wrap p:last-child {
+	margin-bottom: 0;
+}
+.fw-text-block-wrap p:empty {
+	display: none;
+}
+.sticky_sentinel {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+.sticky_sentinel--top {
+	top: 0;
+}
+.sticky_sentinel--bottom {
+	bottom: 0;
+}
+
+.sticky-top {
+	top: calc(var(--wp-admin--admin-bar--height) + var(--site-header--height));
+}
+@media (min-width: 601px) {
+	body.admin-bar #site-header {
+		top: var(--wp-admin--admin-bar--height);
+	}
+}
+/* folder style */
+.list-media .item {
+	padding-top:  calc(var(--bs-gutter-x) * .5);
+	padding-bottom:  calc(var(--bs-gutter-x) * .5);
+}
+.list-media .item .inner {
+	border-bottom: #ddd 1px dashed;
+}
+.list-media .item .inner .image {
+	position: relative;
+}
+.list-media .item .inner .image img {
+/*	width: 100%;*/
+}
+.list-media .item .inner .edit {
+	display: block;
+	padding: 3px 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(255, 255, 255, .6);
+	box-shadow: 1px 1px 6px rgba(0, 0, 0, .3);
+}
+.list-media .item .inner .download .dashicons {
+	vertical-align: middle;
+}
+.list-media .item .inner .download {
+	display: inline-block;
+	padding: 3px 10px;
+	background: #bc7026;
+	color: #fff;
+	transition: all 0.2s ease-in-out;
+}
+.list-media .item .inner .download:hover,
+.list-media .item .inner .download:focus {
+	background: #000;
+	color: #ff0;
+}
+.list-media .item .inner .edit:focus,
+.list-media .item .inner .edit:hover {
+	color: #fff;
+}
+.list-media .item .inner .info {
+	padding: 10px 100px 10px 0;
+}
+.list-media .item .inner .info .title {
+	font-size: 0.86em;
+	font-weight: bold;
+}
+.list-media .item .inner .info .description {
+	margin-top: 12px;
+}
+.toggle-favorite:hover {
+	background-color: transparent;
+	color: #dc3545;
+}
+.toggle-favorite .dashicons {
+	vertical-align: middle;
+	margin-top: -3px;
+}
+.list-media .item .inner .info .actions {
+	top: 5px;
+	right: 0;
+}
+
+.medias_select {
+	margin-top: -3px;
+}
+.medias_select:checked + span {
+	color: #f00;
+	font-weight: bold;
+}
+
+.sub-categories ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+.sub-categories ul.level-0 {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -5px;
+	margin-right: -5px;
+	justify-content: center;
+}
+.sub-categories ul.level-0 > li {
+	padding: 12px;
+	margin: 5px;
+	border: #ddd 1px solid;
+	width: 100%;
+	overflow: hidden;
+}
+.sub-categories ul.level-0 > li > a {
+	font-weight: 500;
+}
+.sub-categories ul.level-0 ul {
+
+}
+.sub-categories ul.level-0 ul li {
+	position: relative;
+	padding-left: 30px;
+	margin: 10px 0;
+}
+.sub-categories ul.level-0 ul li .copy {
+	position: absolute;
+	padding-right: 10px;
+	left: 0;
+	top: 0;
+}
+.fw-shortcode-media-images-search.sticky-top {
+	top: 56px;
+}
+body.admin-bar .fw-shortcode-media-images-search.sticky-top {
+	top: calc(56px + var(--wp-admin--admin-bar--height));
+}
+
+#right-buttons-fixed {
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+}
+.favorite-download-button,
+.favorite-send-modal-button,
+.favorite-remove-button,
+.favorite-delete-button,
+.favorite-page-link {
+	display: block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	margin: 5px 0;
+}
+.favorite-download-button .dashicons,
+.favorite-send-modal-button .dashicons,
+.favorite-remove-button .dashicons,
+.favorite-delete-button .dashicons,
+.favorite-page-link .dashicons {
+	vertical-align: middle;
+	margin-top: -3px;
+}
+@media (min-width: 576px) {/*sm*/
+	.container,
+	.fw-container {
+		width: auto;
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 768px) {/*md*/
+	.container,
+	.fw-container {
+		width: auto;
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 992px) {/*lg*/
+	.container,
+	.fw-container {
+		width: auto;
+		max-width: 100%;
+	}
+	.sub-categories ul.level-0 {
+	    flex-wrap: nowrap;
+	}
+}
+
+@media (min-width: 1200px) {/*xl*/
+	.container,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container-xl,
+	.container-xxl,
+	.fw-container {
+		width: 100%;
+		max-width: 1600px;
+	}
+}
+@media (min-width: 1400px) {
+	.container,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container-xl,
+	.container-xxl {
+		max-width: 1600px;
+	}
+}

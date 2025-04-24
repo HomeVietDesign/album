@@ -1,0 +1,8 @@
+.users.column-users span {
+	display: inline-block;
+	padding: 0 5px;
+	border: rgba(0, 0, 0, .3) 1px solid;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	line-height: 1.8;
+}

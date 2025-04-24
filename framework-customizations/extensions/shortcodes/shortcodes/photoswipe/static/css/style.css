@@ -1,0 +1,8 @@
+.photowipe-gallery-shortcode {
+	position: relative;
+}
+.photowipe-gallery-shortcode a {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
