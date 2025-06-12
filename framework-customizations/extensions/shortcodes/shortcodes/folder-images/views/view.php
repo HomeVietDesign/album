@@ -109,7 +109,7 @@ $nonce = wp_create_nonce('media_front_end_ajax');
                 }
             }
             ?>
-            <div class="filter-controls d-flex flex-wrap justify-content-between align-items-center">
+            <div class="filter-controls d-flex flex-wrap align-items-center">
                 <div class="fs-4 ps-2 d-flex align-items-center">
                     <a href="<?php echo remove_query_arg('cat', fw_current_url()); ?>">
                     <?php
@@ -131,8 +131,15 @@ $nonce = wp_create_nonce('media_front_end_ajax');
                     }
                     ?>
                 </div>
-
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center flex-grow-1 justify-content-end">
+                    <?php
+                    $folder_note = fw_get_db_term_option($folder_cat_id, 'folder_cat', 'folder_note', '');
+                    ?>
+                    <div id="album-note" class="me-3 d-flex align-items-center flex-grow-1 justify-content-end ps-lg-5">
+                        <div class="me-2 fw-bold text-danger"><?php echo esc_html($folder_note); ?></div>
+                        <button type="button" class="btn btn-sm"><span class="dashicons dashicons-edit-large"></span></button>
+                        <input type="text" class="form-control form-control-sm hidden" value="<?=esc_attr($folder_note)?>" data-nonce="<?php echo esc_attr(wp_create_nonce('update-folder-note')); ?>" data-cat="<?=$folder_cat_id?>">
+                    </div>
                     <button type="button" class="selected-delete-button btn btn-sm btn-danger me-2 hide" data-nonce="<?=$nonce?>" title="Xóa file đã chọn"><span class="dashicons dashicons-no"></span></button>
                     <button type="button" class="put-bottom-button btn btn-sm btn-primary me-2 hide" data-nonce="<?=$nonce?>" title="Đẩy xuống cuối">
                         <span class="dashicons dashicons-arrow-down-alt"></span>

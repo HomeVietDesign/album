@@ -284,6 +284,10 @@ body.admin-bar .fw-shortcode-media-images-search.sticky-top {
 	vertical-align: middle;
 	margin-top: -3px;
 }
+
+#album-note input {
+	max-width: 600px;
+}
 @media (min-width: 576px) {/*sm*/
 	.container,
 	.fw-container {

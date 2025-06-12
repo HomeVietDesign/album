@@ -26,16 +26,29 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 		add_action('wp_ajax_folder_images_save_medias_selected', [$this, 'ajax_folder_images_save_medias_selected']);
 		add_action('wp_ajax_folder_images_unsave_medias_selected', [$this, 'ajax_folder_images_unsave_medias_selected']);
 
+		add_action('wp_ajax_update_folder_note', [$this, 'ajax_update_folder_note']);
+
 	}
 
-	public static function litespeed_delete_cache($uri='') {
-		if(''==$uri) {
-			$uri = $_REQUEST['uri']?$_REQUEST['uri']:'';
+	public function ajax_update_folder_note() {
+		$response = [
+			'code' => 0,
+			'msg' => ''
+		];
+
+		$cat = isset($_POST['cat']) ? absint($_POST['cat']) : 0;
+
+		if($cat && current_user_can('edit_posts') && check_ajax_referer('update-folder-note', 'nonce', false)) {
+			$note = isset($_POST['note']) ? sanitize_text_field($_POST['note']) : '';
+			debug_log($_POST);
+			fw_set_db_term_option( $cat, 'folder_cat', 'folder_note', $note );
+			$response['code'] = 1;
+			$response['msg'] = $note;
+		} else {
+			$response['msg'] = 'Lỗi không xác định.';
 		}
 
-		if($uri!='') {
-	        wp_remote_request(home_url($uri), ['method'=>'PURGE']);
-	    }
+		wp_send_json($response);
 	}
 
 	public function ajax_folder_images_unsave_medias_selected() {
@@ -56,9 +69,6 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 					foreach ($items as $attachment_id) {
 						wp_remove_object_terms( $attachment_id, [$folder_cat], 'folder_cat' );
 					}
-
-					self::litespeed_delete_cache();
-					self::litespeed_delete_cache(remove_query_arg( 'cat', $_POST['uri'] ));
 
 					$response['code'] = 1;
 					$response['msg'] = 'Đã thực hiện';
@@ -93,9 +103,6 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 					foreach ($items as $attachment_id) {
 						wp_set_post_terms( $attachment_id, [$folder_cat], 'folder_cat', false );
 					}
-
-					self::litespeed_delete_cache();
-					self::litespeed_delete_cache(add_query_arg( 'cat', $folder_cat, $_POST['uri'] ));
 
 					$response['code'] = 1;
 					$response['msg'] = 'Đã thực hiện';
@@ -153,8 +160,6 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 						update_post_meta( $attachment_id, '_old_rating', $_rating );
 					}
 
-					self::litespeed_delete_cache();
-
 					$response['code'] = 1;
 				}
 			}
@@ -184,8 +189,6 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 
 						self::fix_favorites();
 					}
-
-					self::litespeed_delete_cache();
 
 					$response['code'] = 1;
 					$response['msg'] = 'Đã xóa!';
@@ -225,8 +228,6 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 					self::remove_favorite($attachment_id);
 				}
 			}
-
-			self::litespeed_delete_cache();
 
 			$response['code'] = 1;
 			$response['msg'] = 'OK!';

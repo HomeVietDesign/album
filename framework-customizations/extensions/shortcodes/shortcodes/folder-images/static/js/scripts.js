@@ -371,5 +371,48 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 		});
 
+		$('#album-note button').on('click', function(e){
+			let $btn = $(this), $wrap = $btn.closest('#album-note'), $input = $wrap.find('input'), $text = $wrap.find('div');
+			$btn.addClass('hidden');
+			$text.addClass('hidden');
+			$input.removeClass('hidden').focus();
+		});
+
+		$('#album-note input').on('blur', function(e){
+			let $input = $(this), $wrap = $input.closest('#album-note'), $btn = $wrap.find('button'), $text = $wrap.find('div');
+			$btn.removeClass('hidden');
+			$text.removeClass('hidden');
+			$input.addClass('hidden');
+		});
+
+		$('#album-note input').on('change', function(e){
+			let $input = $(this),
+				$wrap = $input.closest('#album-note'),
+				$btn = $wrap.find('button'),
+				nonce = $input.data('nonce'),
+				cat = $input.data('cat'),
+				$text = $wrap.find('div'),
+				note = $input.val();
+			$.ajax({
+				url: theme.ajax_url,
+				type: 'POST',
+				dataType: 'json',
+				data: {action: 'update_folder_note', cat: cat, nonce: nonce, note: note},
+				beforeSend: function(xhr) {
+					
+				},
+				success: function(response) {
+					if(response.code===1) {
+						$text.text(response.msg);
+						$input.val(response.msg);
+					} else {
+						alert(response.msg);
+					}
+				},
+				error: function() {
+					alert('Lỗi không xác định.');
+				}
+			});
+		});
 	});
 });
