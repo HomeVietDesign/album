@@ -308,12 +308,12 @@ class FW_Shortcode_Folder_Images extends FW_Shortcode
 		//debug($query);
 
 		if($query->have_posts()) {
-			$images = [];
+			// $images = [];
 
-			foreach($query->posts as $attachment) {
-				$image = wp_get_attachment_image_src( $attachment->ID, 'full', false );
-				$images[] = $image;
-			}
+			// foreach($query->posts as $attachment) {
+			// 	$image = wp_get_attachment_image_src( $attachment->ID, 'full', false );
+			// 	$images[] = $image;
+			// }
 			?>
 
 			<div class="list-media row">
